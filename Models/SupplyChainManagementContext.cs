@@ -2,13 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace SupplyChainManagement.Models
 {
     public partial class SupplyChainManagementContext : DbContext
     {
-        public SupplyChainManagementContext()
-        {
-        }
 
         public SupplyChainManagementContext(DbContextOptions<SupplyChainManagementContext> options)
             : base(options)
@@ -26,15 +27,6 @@ namespace SupplyChainManagement.Models
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Transport> Transport { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=laptop-35fj38pc;Database=SupplyChainManagement;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>(entity =>
@@ -42,6 +34,7 @@ namespace SupplyChainManagement.Models
                 entity.Property(e => e.BrandId).HasColumnName("Brand_ID");
 
                 entity.Property(e => e.BrandName)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -51,6 +44,7 @@ namespace SupplyChainManagement.Models
                 entity.Property(e => e.CityId).HasColumnName("City_ID");
 
                 entity.Property(e => e.CityName)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -63,7 +57,9 @@ namespace SupplyChainManagement.Models
 
                 entity.Property(e => e.CityId).HasColumnName("CityID");
 
-                entity.Property(e => e.ClientName).HasMaxLength(50);
+                entity.Property(e => e.ClientName)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
@@ -167,6 +163,7 @@ namespace SupplyChainManagement.Models
                 entity.Property(e => e.ProductId).HasColumnName("Product_ID");
 
                 entity.Property(e => e.ProductName)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
@@ -193,7 +190,9 @@ namespace SupplyChainManagement.Models
             {
                 entity.Property(e => e.SupplierId).HasColumnName("Supplier_ID");
 
-                entity.Property(e => e.SupplierName).HasMaxLength(50);
+                entity.Property(e => e.SupplierName)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Transport>(entity =>
@@ -202,7 +201,9 @@ namespace SupplyChainManagement.Models
 
                 entity.Property(e => e.TotalWeight).HasColumnType("numeric(10, 2)");
 
-                entity.Property(e => e.TransporterName).HasMaxLength(50);
+                entity.Property(e => e.TransporterName)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.TruckDepartureDate).HasColumnType("date");
 
