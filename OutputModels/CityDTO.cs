@@ -9,9 +9,5 @@ namespace SupplyChainManagement.OutputModels
     {
         public int CityID { get; set; }
         public String CityName { get; set; }
-
-
-
-
     }
 }

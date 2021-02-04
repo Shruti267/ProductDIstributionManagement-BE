@@ -36,11 +36,6 @@ namespace SupplyChainManagement
                 c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "My API", Version = "v1"});
             });
 
-            /*            services.AddCors(c =>
-                        {
-                            c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-                        });*/
-
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -77,10 +72,7 @@ namespace SupplyChainManagement
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            
-            
+            });        
         }
     }
 }
